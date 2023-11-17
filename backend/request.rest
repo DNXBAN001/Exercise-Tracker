@@ -1,0 +1,58 @@
+//Post a new user
+POST http://localhost:5000/users/add
+Content-Type: application/json 
+
+{
+    "username": "Barnez76",
+    "password": "123456789"
+}
+
+###Get all users
+GET http://localhost:5000/users
+Content-Type: application/json
+
+###Update user info
+PUT http://localhost:5000/users/update/6555621ecc14efd02df7698f
+Content-Type: application/json
+
+{
+    "username": "Barnez76",
+    "password": "987654321"
+}
+
+### Remove user by id
+DELETE http://localhost:5000/users/655561f4cc14efd02df76987
+Content-Type: application/json
+
+
+//////////////////////////////////////////////////////////////
+
+###//Add exercise
+POST http://localhost:5000/exercises/add
+Content-Type: application/json
+
+{
+    "username": "Berita",
+    "description": "Aerobics",
+    "duration": "30",
+    "date": "2023-11-15T03:54:33.180Z" 
+}
+
+###Get all exercises
+GET http://localhost:5000/exercises
+Content-Type: application/json
+
+###Update exercise by id
+PUT http://localhost:5000/exercises/update/6552f1124c08942dd32c7e43
+Content-Type: application/json
+
+{
+    "username": "Barnez76",
+    "description": "Weight Lift",
+    "duration": 45,
+    "date": "2023-11-14T03:54:33.180Z"
+}
+
+###Delete exercise by id
+DELETE http://localhost:5000/exercises/655561f4cc14efd02df76987
+Content-Type: application/json
