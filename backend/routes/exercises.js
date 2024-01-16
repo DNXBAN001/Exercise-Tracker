@@ -29,7 +29,7 @@ router.route("/add").post(async (req, res) => {
 router.route("/").get(async (req, res) => {
     try{
         const exercises = await Exercise.find()
-        res.status(200).json({success: true, msg: exercises})
+        res.status(200).json({success: true, data: exercises})
     }catch(err){
         return res.status(400).json({success: false, msg: "There was an error fetching the exercises..."})
     }
@@ -59,9 +59,7 @@ router.route("/update/:id").put(async (req, res) => {
 router.route("/:id").delete(async (req, res) => {
     try{
         // const exercise = await Exercise.findById(req.params.id)
-        console.log("Before deleting...")
         await Exercise.findByIdAndRemove(req.params.id)
-        console.log("After deleting...")
         res.status(200).json({success: true, msg: "Exercise deleted successfully..."})
     }catch(err){
         return res.status(400).json({success: false, msg: "Error deleting the exercise...id could not be found"})

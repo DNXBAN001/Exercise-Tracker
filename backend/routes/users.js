@@ -4,7 +4,7 @@ const router = express.Router();
 
 let User = require("../models/user");
 
-// Add new user  /user s/add
+// Add new user  /users/add
 router.route("/add").post(async (req, res) => {
     const { username, password } = req.body
     if(!username || !password){
@@ -23,7 +23,7 @@ router.route("/add").post(async (req, res) => {
 router.route("/").get(async (req, res) => {
     try{
         const userCollection = await User.find()
-        res.status(200).json({success: true, msg: userCollection})
+        res.status(200).json({success: true, data: userCollection})
     }catch(err){
         return res.status(400).json({success: false, msg: "There was an error fetching the users..."})
     }
