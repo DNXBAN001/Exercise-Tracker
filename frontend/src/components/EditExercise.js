@@ -16,13 +16,20 @@ export default function EditExercise(props){
     })
 
     const { id } = useParams()
-    console.log(useParams)
+    // console.log("ID from the EditExercise component: "+id)
 
     React.useEffect(() => {
-        // axios.get("http://localhost:5000/exercises/"+id)
-        //     .then( response => {
-        //         console.log(response.data)
-        //     })
+        axios.get("http://localhost:5000/exercises/"+id)
+            .then(res => {
+                // console.log(res.data.data)
+                const { username, description, duration, date} = res.data.data
+                setExercise({
+                    username: username,
+                    description: description,
+                    duration: duration,
+                    date: new Date(date)
+                 })
+            })
         axios.get("http://localhost:5000/users")
             .then(res => {
                 if(res.data.data.length > 0 ){
@@ -68,9 +75,8 @@ export default function EditExercise(props){
 
         window.location = "/" //direct user back to home page after submitting the form data
       }
-    function submitToAPI(newExercise){
-        console.log(newExercise)
-        axios.post("http://localhost:5000/exercises/update/"+id, newExercise)
+    function submitToAPI(editedExercise){
+        axios.put("http://localhost:5000/exercises/update/"+id, editedExercise)
             .then(res => console.log(res.msg))
     }
 
@@ -88,14 +94,10 @@ export default function EditExercise(props){
                     value={exercise.username}
                 >
                     {
-                        exercise.users.map(user => {
-                            return (
                                 <option 
-                                    key={user}
-                                    value={user}
-                                >{user}</option>
-                            )
-                        })
+                                    key={exercise.username}
+                                    value={exercise.username}
+                                >{exercise.username}</option>
                     }
                 </select><br/><br/>
                 <label>Description</label><br/>
